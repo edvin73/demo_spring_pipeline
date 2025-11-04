@@ -8,9 +8,10 @@ pipeline {
     
     environment {
         APP_NAME="springboot-demo"
+        USER_NAME="jenkins"
         JAR_FILE="target/${APP_NAME}.jar"
         DEV_SERVER="localhost" 
-        DEPLOY_PATH="/home/edvin/app/${APP_NAME}"
+        DEPLOY_PATH="/opt/app/${APP_NAME}"
    }
     
     stages {
@@ -31,10 +32,10 @@ pipeline {
 				echo 'Deploying to Development environment...'
 				
 				sh """
-                    ssh edvin@${DEV_SERVER} 'mkdir -p ${DEPLOY_PATH}'
+                    ssh ${USER_NAME}@${DEV_SERVER} 'mkdir -p ${DEPLOY_PATH}'
                     scp ${JAR_FILE} user@${DEV_SERVER}:${DEPLOY_PATH}/${APP_NAME}.jar
-                    ssh edvin@${DEV_SERVER} 'pkill -f ${APP_NAME}.jar || true'
-                    ssh edvin@${DEV_SERVER} 'nohup java -jar ${DEPLOY_PATH}/${APP_NAME}.jar --spring.profiles.active=dev > ${DEPLOY_PATH}/app.log 2>&1 &'
+                    ssh ${USER_NAME}@${DEV_SERVER} 'pkill -f ${APP_NAME}.jar || true'
+                    ssh ${USER_NAME}@${DEV_SERVER} 'nohup java -jar ${DEPLOY_PATH}/${APP_NAME}.jar --spring.profiles.active=dev > ${DEPLOY_PATH}/app.log 2>&1 &'
                 """
 				
 			}
