@@ -10,6 +10,7 @@ pipeline {
         APP_NAME="springboot-demo"
         JAR_FILE="target/${APP_NAME}.jar"
         DEV_SERVER="localhost" 
+        DEPLOY_PATH="/home/edvin/app/${APP_NAME}"
    }
     
     stages {
