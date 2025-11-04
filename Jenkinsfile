@@ -31,10 +31,10 @@ pipeline {
 				echo 'Deploying to Development environment...'
 				
 				sh """
-                    ssh user@${DEV_SERVER} 'mkdir -p ${DEPLOY_PATH}'
+                    ssh edvin@${DEV_SERVER} 'mkdir -p ${DEPLOY_PATH}'
                     scp ${JAR_FILE} user@${DEV_SERVER}:${DEPLOY_PATH}/${APP_NAME}.jar
-                    ssh user@${DEV_SERVER} 'pkill -f ${APP_NAME}.jar || true'
-                    ssh user@${DEV_SERVER} 'nohup java -jar ${DEPLOY_PATH}/${APP_NAME}.jar --spring.profiles.active=dev > ${DEPLOY_PATH}/app.log 2>&1 &'
+                    ssh edvin@${DEV_SERVER} 'pkill -f ${APP_NAME}.jar || true'
+                    ssh edvin@${DEV_SERVER} 'nohup java -jar ${DEPLOY_PATH}/${APP_NAME}.jar --spring.profiles.active=dev > ${DEPLOY_PATH}/app.log 2>&1 &'
                 """
 				
 			}
