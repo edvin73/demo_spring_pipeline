@@ -10,7 +10,7 @@ pipeline {
         APP_NAME="springboot-demo"
         USER_NAME="jenkins"
         JAR_FILE="target/${APP_NAME}.jar"
-        DEV_SERVER="localhost" 
+        DEV_SERVER="192.168.1.22" 
         DEPLOY_PATH="/opt/app/${APP_NAME}"
    }
     
