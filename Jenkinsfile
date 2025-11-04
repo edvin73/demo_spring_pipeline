@@ -11,8 +11,8 @@ pipeline {
         JAR_FILE = "target/${APP_NAME}.jar"
         DEV_SERVER = "localhost"
         DEPLOY_PATH = "/opt/apps/${APP_NAME}"
-        MAVEN_HOME = "/opt/maven"
-        JAVA_HOME = "/usr/lib/jvm/java-21-openjdk-amd64/"
+        MAVEN_HOME = "/usr/bin"
+        JAVA_HOME = "/usr/lib/jvm/java-21-openjdk-amd64"
    }
     
     stages {
