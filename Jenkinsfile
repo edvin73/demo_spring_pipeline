@@ -35,8 +35,10 @@ pipeline {
             steps {
 				echo 'Deploying to Development environment...'
 				
+				//  ssh ${USER_NAME}@${DEV_SERVER} 'mkdir -p ${DEPLOY_PATH}'
+				
 				sh """
-                    ssh ${USER_NAME}@${DEV_SERVER} 'mkdir -p ${DEPLOY_PATH}'
+                    ssh ${USER_NAME}@${DEV_SERVER} 
                     scp ${JAR_FILE} ${USER_NAME}@${DEV_SERVER}:${DEPLOY_PATH}/${APP_NAME}.jar      
                     ssh ${USER_NAME}@${DEV_SERVER} "set +e; pkill -f ${APP_NAME}.jar; exit 0"
                     ssh ${USER_NAME}@${DEV_SERVER} 'nohup java -jar ${DEPLOY_PATH}/${APP_NAME}.jar --spring.profiles.active=dev > ${DEPLOY_PATH}/app.log 2>&1 &'              
